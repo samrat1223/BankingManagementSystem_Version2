@@ -87,8 +87,8 @@
 		<td><%=customer.getCust_DOB()%></td>
 		<td><%=customer.getAccnt_No()%></td>
 		
-	<!--    <td><a
-			 href="CustomerHandler?action=editform&cust_id=<%=customer.getCust_ID()%>"> Update</a></td> -->
+	<%--    <td><a
+			 href="CustomerHandler?action=editform&cust_id=<%=customer.getCust_ID()%>"> Update</a></td> --%>
 		 
 		 <td><a href="editCustomer.jsp?action=editform&cust_id=<%=customer.getCust_ID()%>">Update</a></td>  
 		 

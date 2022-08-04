@@ -111,11 +111,14 @@ background: black;
           <a class="nav-link active" aria-current="page" href="#" >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.jsp">Login as a Admin or a Customer</a>
+          <a class="nav-link" href="login.jsp">Login as a Admin </a>
         </li>
     
         <li class="nav-item">
           <a class="nav-link" href="userregister.jsp">Register as a Customer</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="UserLogin.jsp">Login as a User</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

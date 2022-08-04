@@ -10,5 +10,6 @@ public interface AccountCrud {
 	int deleteRecord(long Accnt_No);
 	List<Account> getAllRecords();
 	Account getAccountByAccno(long Accnt_No);
+	List<Account> getAccountByAccnt_ID(long Accnt_No);
 
 }

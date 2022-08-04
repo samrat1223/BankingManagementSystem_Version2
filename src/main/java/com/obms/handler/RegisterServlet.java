@@ -41,7 +41,6 @@ public class RegisterServlet extends HttpServlet {
 	        try {
 	            registerDao.registerEmployee(register);
 	        } catch (Exception e) {
-	            // TODO Auto-generated catch block
 	            e.printStackTrace();
 	        }
 

@@ -30,18 +30,45 @@ public class LoginServlet extends HttpServlet {
 	        loginBean.setUsername(username);
 	        loginBean.setPassword(password);
 
-	        try {
+	       /* try {
+	        	
 	            if (loginDao.validate(loginBean)) {
 	                //HttpSession session = request.getSession();
 	                // session.setAttribute("username",username);
 	                response.sendRedirect("loginsuccess.jsp");
 	            } else {
-	                HttpSession session = request.getSession();
+	                //HttpSession session = request.getSession();
 	                //session.setAttribute("user", username);
-	                //response.sendRedirect("login.jsp");
+	                response.sendRedirect("customerHome.jsp");
 	            }
 	        } catch (ClassNotFoundException e) {
 	            e.printStackTrace();
-	        }
+	        }*/
+	        
+ System.out.println("****************************************************************************");
+            
+            System.out.println(loginBean.getUsername() + loginBean.getPassword());
+	        if(loginBean.getUsername().equals("Samrat") && loginBean.getPassword().equals("samrat123")) 
+	        	
+	        {
+	        	response.sendRedirect("loginsuccess.jsp");
+	        } else
+				try {
+					if(loginDao.validateUser(loginBean)) {
+						response.sendRedirect("customerHome.jsp");
+					}
+					else
+					{
+						//response.sendRedirect("customerHome.jsp");
+						System.out.println("Incorrect Credentials");
+						
+						response.sendRedirect("login.jsp");
+					}
+				} catch (ClassNotFoundException e) {
+
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 	    }
 }

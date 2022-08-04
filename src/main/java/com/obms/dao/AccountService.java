@@ -16,7 +16,7 @@ public class AccountService implements AccountCrud {
 
 	@Override
 	public int insertRecord(Account account) {
-		// TODO Auto-generated method stub
+
 		int result=0;
 		try{
 			Connection con=AccountConnection.getConnection();
@@ -44,7 +44,7 @@ public class AccountService implements AccountCrud {
 
 	@Override
 	public int updateRecord(Account account) {
-		// TODO Auto-generated method stub
+
 		int result=0;
 		try{
 			Connection con=AccountConnection.getConnection();
@@ -73,7 +73,7 @@ public class AccountService implements AccountCrud {
 
 	@Override
 	public int deleteRecord(long Accnt_No) {
-		// TODO Auto-generated method stub
+
 		int result=0;
 		try{
 			Connection con=AccountConnection.getConnection();
@@ -92,7 +92,7 @@ public class AccountService implements AccountCrud {
 
 	@Override
 	public List<Account> getAllRecords() {
-		// TODO Auto-generated method stub
+
 		ArrayList<Account> list=new ArrayList<>();
 		try{
 		Connection con=AccountConnection.getConnection();
@@ -117,8 +117,43 @@ public class AccountService implements AccountCrud {
 	}
 
 	@Override
+	public List<Account> getAccountByAccnt_ID(long Accnt_No) {
+
+		ArrayList<Account> list=new ArrayList<>();
+		try{
+		Connection con=AccountConnection.getConnection();
+		//To get all Records
+		Statement stmt=con.createStatement();
+		PreparedStatement ps = con.prepareStatement("select * from account where Accnt_No=?");
+		ps.setLong(1, Accnt_No);
+		ResultSet rs = ps.executeQuery();
+		//System.out.println(rs.next());
+		
+		//Add all Records in ArrayList		
+		
+		if(rs.next()) {
+			//System.out.println("HELLLO");
+			System.out.println(rs.getLong(1));
+			list.add(new Account(rs.getLong(1),rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9)));		
+
+		}
+		/*while(rs.next()) {
+		 * 
+			System.out.println(rs.getLong(1));
+		}*/
+		stmt.close();
+		con.close();
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		} 
+		return list;
+	}
+	
+	@Override
 	public Account getAccountByAccno(long Accnt_No) {
-		// TODO Auto-generated method stub
+
 		Account account=null;
 		try{
 			Connection con=AccountConnection.getConnection();

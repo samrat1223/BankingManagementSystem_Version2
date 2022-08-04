@@ -21,7 +21,7 @@ public class AccountHandler extends HttpServlet {
     AccountService service=new AccountService();  
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String action=request.getParameter("action");
 		long id, accNo, accBalance;
 		RequestDispatcher rd;

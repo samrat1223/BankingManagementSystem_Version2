@@ -11,6 +11,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <title>All Users Lists</title>
 </head>
+<style>
+table, th, td {
+  border:2px solid white;
+  background-color:black;
+  color:white;
+}
+</style>
 <body>
 <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -45,9 +52,9 @@
 			
 		%>
   
-  <div class="card text-bg-dark" style="margin-top:40px;">
-  <div class="card-item">
-        <table border="0">
+  <div class="card" style="margin-top: 40px;">
+		<div class="card-item">
+			<table style="width:100%" >
 	<tr>
 		<th>Customer Id</th>
 		<th>Customer Address</th>
@@ -63,6 +70,7 @@
 		<th>Customer NomineeName</th>
 		<th>Customer DateOfBirth</th>
 		<th>Customer AccountNo</th>
+		<th>Modify</th>
 		<th>Modify</th>
 	</tr>
 	<tr>
@@ -106,6 +114,14 @@
 
 <div style="text-align:center; margin-top:20px">
    <a class="btn btn-primary"  href="addCustomer.jsp">Add a new Customer</a>
+   
+  
    </div>
+   
+ <div style="text-align:centre; margin-top:20px">
+ 	<a class="btn btn-primary"  href="loginsuccess.jsp">Go Back</a>
+ 	
+ 	</div>
+ 	
 </body>
 </html>

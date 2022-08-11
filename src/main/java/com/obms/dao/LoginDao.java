@@ -1,16 +1,20 @@
 package com.obms.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.obms.bean.LoginBean;
 import com.obms.dbconnection.AccountConnection;
 
 public class LoginDao {
+	final static Logger logger=Logger.getLogger(LoginDao.class.getName());
 
 	public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
         boolean status = false;
@@ -18,7 +22,7 @@ public class LoginDao {
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "password");
+            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "ROOt123@");
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection
@@ -26,11 +30,13 @@ public class LoginDao {
             preparedStatement.setString(1, loginBean.getUsername());
             preparedStatement.setString(2, loginBean.getPassword());
 
-            System.out.println("****************************************************************************");
+            logger.info("****************************************************************************");
             
-            System.out.println(loginBean.getUsername() + loginBean.getPassword());
+            logger.info(loginBean.getUsername() + loginBean.getPassword());
             
-            System.out.println(preparedStatement);
+            //System.out.println(preparedStatement);
+            logger.log(Level.INFO,"{0}",new Object[] {preparedStatement});
+            
             ResultSet rs = preparedStatement.executeQuery();
             status = rs.next();
 
@@ -47,7 +53,7 @@ public class LoginDao {
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "password");
+            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "ROOt123@");
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection
@@ -55,9 +61,9 @@ public class LoginDao {
             preparedStatement.setString(1, loginBean.getUsername());
             preparedStatement.setString(2, loginBean.getPassword());
 
-            System.out.println("****************************************************************************");
+            logger.info("****************************************************************************");
             
-            System.out.println(loginBean.getUsername() + loginBean.getPassword());
+            logger.info(loginBean.getUsername() + loginBean.getPassword());
             
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
@@ -77,12 +83,12 @@ public class LoginDao {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
+                logger.info("SQLState: " + ((SQLException) e).getSQLState());
+                logger.info("Error Code: " + ((SQLException) e).getErrorCode());
+                logger.info("Message: " + e.getMessage());
                 Throwable t = ex.getCause();
                 while (t != null) {
-                    System.out.println("Cause: " + t);
+                	logger.info("Cause: " + t);
                     t = t.getCause();
                 }
             }

@@ -51,7 +51,7 @@
     </tr>
 
    </table> -->
-      <h2><b>User Login Form</b></h2> <hr/>
+      <h2><b>Admin Login Form</b></h2> <hr/>
        <div class="mb-3" style="width:400px">
     <label for="exampleInputEmail1" class="form-label" style="font-size:25px"><b>UserName</b></label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>

@@ -1,6 +1,7 @@
 package com.obms.handler;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.obms.bean.LoginBean;
 import com.obms.dao.LoginDao;
+import com.obms.dbconnection.AccountConnection;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+	final static Logger logger=Logger.getLogger(LoginServlet.class.getName());
 	 private static final long serialVersionUID = 1L;
 	    private LoginDao loginDao;
 
@@ -45,9 +48,9 @@ public class LoginServlet extends HttpServlet {
 	            e.printStackTrace();
 	        }*/
 	        
- System.out.println("****************************************************************************");
+ logger.info("****************************************************************************");
             
-            System.out.println(loginBean.getUsername() + loginBean.getPassword());
+ logger.info(loginBean.getUsername() + loginBean.getPassword());
 	        if(loginBean.getUsername().equals("Samrat") && loginBean.getPassword().equals("samrat123")) 
 	        	
 	        {
@@ -60,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 					else
 					{
 						//response.sendRedirect("customerHome.jsp");
-						System.out.println("Incorrect Credentials");
+						logger.info("Incorrect Credentials");
 						
 						response.sendRedirect("login.jsp");
 					}

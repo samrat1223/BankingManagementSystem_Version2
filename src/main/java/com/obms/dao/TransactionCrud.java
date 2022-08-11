@@ -9,7 +9,7 @@ public interface TransactionCrud {
 	
 	int insertRecord(Transaction transaction);
 	List<Transaction> getAllRecords();
-	Transaction getTransactionByTransac_Id(int Transaction_Id);
+	Transaction getTransactionByTransaction_Id(int Transaction_Id);
 
 
 }

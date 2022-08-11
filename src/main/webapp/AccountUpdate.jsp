@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="EN" xml:lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -18,6 +18,7 @@
 	<input type="hidden" name="action" value="updatedform" />
 	<table>
 		<tr>
+		<th scope="col">Customer Details</th>
 			<td>Account Number: </td>
 			<td><input type="text" name="accNo" value="<%=account.getAccnt_No() %>" readonly="readonly" /></td>
 		</tr>
@@ -31,7 +32,7 @@
 		</tr>
 		<tr>
 			<td>IFSC code: </td>
-			<td><input type="text" name="ifscCode" value="<%=account.getIFSC_Code() %>" /></td>
+			<td><input type="text" name="ifscCode" value="<%=account.getiFSC_Code() %>" /></td>
 		</tr>
 		<tr>
 			<td>Opening Date: </td>

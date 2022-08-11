@@ -5,10 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.obms.bean.Register;
+import com.obms.dbconnection.AccountConnection;
 
 public class RegisterDao {
+	final static Logger logger=Logger.getLogger(RegisterDao.class.getName());
 	public int registerEmployee(Register register) throws ClassNotFoundException {
         String INSERT_USERS_SQL = "INSERT INTO users" +
             "  (id, first_name, last_name, username, password, address, contact) VALUES " +
@@ -23,7 +27,7 @@ public class RegisterDao {
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "password");
+            .getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem?useSSL=false", "root", "ROOt123@");
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -44,7 +48,8 @@ public class RegisterDao {
             	id++;
             }
             
-            System.out.println(preparedStatement);
+            //System.out.println(preparedStatement);
+            logger.log(Level.INFO,"{0}",new Object[] {preparedStatement});
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
 
@@ -59,12 +64,12 @@ public class RegisterDao {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
+                logger.info("SQLState: " + ((SQLException) e).getSQLState());
+                logger.info("Error Code: " + ((SQLException) e).getErrorCode());
+                logger.info("Message: " + e.getMessage());
                 Throwable t = ex.getCause();
                 while (t != null) {
-                    System.out.println("Cause: " + t);
+                	logger.info("Cause: " + t);
                     t = t.getCause();
                 }
             }

@@ -14,13 +14,6 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
-<style>
-table, th, td {
-  border:2px solid white;
-  background-color:black;
-  color:white;
-}
-</style>
 <body>
 	<nav class="navbar navbar-expand-lg bg-info">
 		<div class="container-fluid">
@@ -52,30 +45,29 @@ table, th, td {
 
 
 	<%
-	
-	         long Accnt_No = (int) session.getAttribute("Accnt_No");  
+			 
+	         int Transaction_Id = (int) session.getAttribute("Accnt_No");  
 	//int i=(int)Accnt_No;  
 			//out.println("Accnt_No->"+session.getAttribute("Accnt_No"));
-			AccountService service = new AccountService();
-			List<Account> accountList = service.getAccountByAccnt_ID(Accnt_No);
+			TransactionService service = new TransactionService();
+			Transaction transaction = service.getTransactionByTransaction_Id(Transaction_Id);
 			
 		%>
 
-   <%= Accnt_No %> 
+   <%= Transaction_Id %> 
 
-	<div class="card" style="margin-top: 40px;">
+	<div class="card text-bg-dark" style="margin-top: 40px;">
 		<div class="card-item">
-			<table style="width:100%" >
+			<table border="0">
 				<tr>
-					<th>Account No</th>
-					<th>Account Type</th>
-					<th>Account Balance</th>
-					<th>IFSC code</th>
-					<th>Opening Date</th>
-					<th>Branch Name</th>
-					<th>Branch Code</th>
-					<th>Customer Id</th>
-					<th>Customer NomineeName</th>
+					<th>Transaction ID</th>
+					<th>Amount</th>
+					<th>Transaction Date</th>
+					<th>Sender</th>
+					<th>Receiver</th>
+					<th>Transaction Type</th>
+					<th>Account Number</th>
+					
 					<!--  <th>Modify</th> -->
 				</tr>
 				<tr>
@@ -83,33 +75,24 @@ table, th, td {
 			/*while(itr.hasNext())
 			 {
 			 System.out.println(user.getId());*/
-			for (Account account : accountList) {
+			
 		%>
-					<td><%=account.getAccnt_No()%></td>
-					<td><%=account.getAccnt_Type()%></td>
-					<td><%=account.getAccnt_Balance()%></td>
-					<td><%=account.getiFSC_Code()%></td>
-					<td><%=account.getOpening_Date()%></td>
-					<td><%=account.getBranch_Name()%></td>
-					<td><%=account.getBranch_Code()%></td>
-					<td><%=account.getCust_ID()%></td>
-					<td><%=account.getCust_NomineeName()%></td>
+					<td><%=transaction.getTransaction_Id()%></td>
+					<td><%=transaction.getAmount()%></td>
+					<td><%=transaction.getTransac_Date()%></td>
+					<td><%=transaction.getSender()%></td>
+					<td><%=transaction.getReceiver()%></td>
+					<td><%=transaction.getTransac_Type()%></td>
+					<td><%=transaction.getAccnt_No()%></td>
+					
 					<%
-		}
+		
 		//}
 	%>
 				
 			</table>
 		</div>
 	</div>
-	
-	<div style="text-align:centre; margin-top:20px">
- 	<a class="btn btn-danger"  href="userLoggedIn.jsp">Go Back</a>
- 	<a class="btn btn-primary"  href="Payment.jsp">Card Details</a>
- 	<a class="btn btn-primary"  href="Deposit.jsp">Deposit</a>
- 	<a class="btn btn-primary"  href="SendMoney.jsp">Send Money</a>
- 	
- 	</div>
 
 
 </body>

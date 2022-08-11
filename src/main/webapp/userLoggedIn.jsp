@@ -27,6 +27,9 @@
         <li class="nav-item">
           <a class="nav-link" href="userregister.jsp">Register as a Customer</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="UserLogin.jsp">Logout</a>
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -59,7 +62,7 @@
     <h5 class="card-title">Your Details</h5>
     <h6 class="card-subtitle mb-2 text-muted">Your Details</h6>
     <p class="card-text">Click here to view information related to you</p>
-    <a href="Account.jsp" class="btn btn-primary">You</a>
+    <a href="UserDetails.jsp" class="btn btn-primary">You</a>
     <!--  <a href="#" class="btn btn-primary">Another link</a> -->
   </div>
 </div>
@@ -68,7 +71,7 @@
     <h5 class="card-title">Transaction</h5>
     <h6 class="card-subtitle mb-2 text-muted">View Transaction</h6>
     <p class="card-text">Click here to view information related to all transactions</p>
-    <a href="Transaction.jsp" class="btn btn-primary">Transaction</a>
+    <a href="TransactionID.jsp" class="btn btn-primary">Transaction</a>
     <!--  <a href="#" class="btn btn-primary">Another link</a> -->
   </div>
 </div>

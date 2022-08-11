@@ -2,17 +2,21 @@ package com.obms.dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.obms.bean.Transaction;
 import com.obms.dbconnection.TransactionConnection;
 
 
 public class TransactionService implements TransactionCrud {
+	final Logger logger=Logger.getLogger(TransactionService.class.getName());
 	
 	public int insertRecord(Transaction transaction) {
 		int result=0;
@@ -52,7 +56,7 @@ public class TransactionService implements TransactionCrud {
 
         while(rs.next()) {   
         	
-        	System.out.println(rs.getInt(1));
+        	logger.log(Level.INFO,"id : {0}",new Object[] {rs.getInt(1)});
 			list.add(new Transaction(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
 
         }
@@ -66,7 +70,7 @@ public class TransactionService implements TransactionCrud {
         return list;
 	}
         
-        public Transaction getTransactionByTransac_Id(int Transaction_Id) {
+        public Transaction getTransactionByTransaction_Id(int Transaction_Id) {
 
         	
         	Transaction transaction=null;
@@ -86,7 +90,31 @@ public class TransactionService implements TransactionCrud {
     		return transaction;
     	}
 
+        public List<Transaction> getRecordsbyAccnt_No(int Accnt_No) {
+            ArrayList<Transaction> list=new ArrayList<>();
+            try{
+            Connection con=TransactionConnection.getConnection();
+            //To get all Records
+            PreparedStatement stmt=con.prepareStatement("select * from transaction where Accnt_No=?");
+            stmt.setInt(1, Accnt_No);
+            ResultSet rs = stmt.executeQuery();
+            //Add all Records in ArrayList      
 
+            while(rs.next()) {   
+            	
+            	logger.log(Level.INFO,"id : {0}",new Object[] {rs.getInt(1)});
+    			list.add(new Transaction(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
+
+            }
+            stmt.close();
+            con.close();
+
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            return list;
+    	}
 		
 
 

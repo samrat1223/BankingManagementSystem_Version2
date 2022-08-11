@@ -1,6 +1,8 @@
 package com.obms.handler;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.obms.bean.Transaction;
 import com.obms.dao.TransactionService;
+import com.obms.dbconnection.AccountConnection;
 
 
 @WebServlet("/TransactionHandler")
 public class TransactionHandler extends HttpServlet {
+	final static Logger logger=Logger.getLogger(TransactionHandler.class.getName());
 	private static final long serialVersionUID = 1L;
 	
 	 TransactionService service=new TransactionService();
@@ -32,7 +36,8 @@ public class TransactionHandler extends HttpServlet {
 		switch(action){
 		case "Transaction_Id":
 			id=Integer.parseInt(request.getParameter("search"));
-			System.out.println(id);
+			//System.out.println(id);
+			logger.log(Level.INFO,"{0}",new Object[] {id});
 			request.setAttribute("search", id);
 			rd=request.getRequestDispatcher("TransactionID.jsp");
 			rd.forward(request, response);
@@ -47,7 +52,7 @@ public class TransactionHandler extends HttpServlet {
 			Transac_Type=request.getParameter("Transac_Type");
 			Accnt_No=Integer.parseInt(request.getParameter("Accnt_No"));
 			
-			System.out.println(Transaction_Id+" "+ Amount+" "+ Transac_Date+" "+ Sender+" "+ Receiver+" "+ Transac_Type+" "+ Accnt_No);
+			logger.info(Transaction_Id+" "+ Amount+" "+ Transac_Date+" "+ Sender+" "+ Receiver+" "+ Transac_Type+" "+ Accnt_No);
 			Transaction transaction1=new Transaction(Transaction_Id, Amount, Transac_Date, Sender, Receiver, Transac_Type, Accnt_No);
 			result=service.insertRecord(transaction1);
 			if(result>0) {
@@ -56,7 +61,7 @@ public class TransactionHandler extends HttpServlet {
 			
 			}
 			else {
-				System.out.println("Record not inserted");
+				logger.info("Record not inserted");
 			}
 		}
 	}

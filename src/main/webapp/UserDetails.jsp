@@ -1,3 +1,5 @@
+<%@page import="com.obms.dao.UserService"%>
+<%@page import="com.obms.bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -5,9 +7,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 <title>Insert title here</title>
 </head>
+<style>
+table, th, td {
+  border:2px solid white;
+  background-color:black;
+  color:white;
+}
+</style>
 <body>
+
 <nav class="navbar navbar-expand-lg bg-info">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">OBMS Bank</a>
@@ -36,51 +47,51 @@
 		</div>
 	</nav>
 
-<h1>Add Transaction: </h1>
-<form method="post" name="AddTransactionDetails" action="TransactionHandler">
-	<input type="hidden" name="action" value="addform" />
-	<table>
-		<tr>
-			<td style="font-weight:bold">Transaction ID: </td>
-			<td><input type="text" name="Transaction_Id" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Amount : </td>
-			<td><input type="text" name="Amount" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Transaction Date: </td>
-			<td><input type="text" name="Transac_Date" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Sender : </td>
-			<td><input type="text" name="Sender" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Receiver : </td>
-			<td><input type="text" name="Receiver" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Transaction Type : </td>
-			<td><input type="text" name="Transac_Type" /></td>
-		</tr>
-		<tr>
-			<td style="font-weight:bold">Account Number : </td>
-			<td><input type="text" name="Accnt_No" /></td>
-		</tr>
-		
-		
-		<tr>
-			<td></td>
-			<td><input type="submit" value="submit" style="border:2px solid black; font-weight:bold"></td>
-		</tr>
-		
+	<%
+		int Accnt_No=(int) session.getAttribute("Accnt_No");
+		UserBean user = new UserService().getUserByAccnt_No(Accnt_No);
+	%>
+	
+	
+	<div class="card" style="margin-top: 40px;">
+		<div class="card-item">
+			<table style="width:100%" >
+<tr>
+    	<th>ID</th>
+    	<th>First Name</th>
+    	<th>Last Name</th>
+    	<th>Username</th>
+    	<th>Password</th>
+    	<th>Address</th>
+    	<th>Contact No</th>
+    	<th>Customer ID</th>
+    	<th>Account No</th>
+    	<th>Transaction ID</th>
+    	
+    </tr>
+    
+
+	
+	<tr>		
+					<td> <%= user.getId() %></td>
+					<td><%= user.getFirst_name() %></td>
+					<td><%= user.getLast_name() %></td>
+					<td><%= user.getUsername() %></td>
+					<td><%= user.getPassword() %></td>
+					<td><%= user.getAddress() %></td>
+					<td><%= user.getContact() %></td>
+					<td><%= user.getCust_ID() %></td>
+					<td><%= user.getAccnt_No() %></td>
+					<td><%= user.getTransaction_Id() %></td>
+					
+	</tr>
 	</table>
-</form>
-
-<div style="text-align:centre; margin-top:20px">
- 	<a class="btn btn-primary"  href="Transaction.jsp">Go Back</a>
+	</div>
+	</div>
+					
+	<div style="text-align:centre; margin-top:20px">
+ 	<a class="btn btn-primary"  href="userLoggedIn.jsp">Go Back</a>
+ 	
  	</div>
-
 </body>
 </html>
